@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:weightSum="2"
+        android:orientation="horizontal"
+
+        >
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            >
+
+
+
+        <LinearLayout
+            android:id="@+id/cameraBtnLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            >
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/camera"
+                android:layout_gravity="center_horizontal"
+
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/camera"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+        </LinearLayout>
+        </FrameLayout>
+
+
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            >
+
+        <LinearLayout
+            android:id="@+id/galleryBtnLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            >
+
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/gallary"
+                android:layout_gravity="center_horizontal"
+
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gallary"
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/green"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+        </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

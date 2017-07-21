@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numbersBackgroundColor="@color/white"
+        android:numbersInnerTextColor="@color/black"
+        android:numbersSelectorColor="@color/dark_green"
+        android:numbersTextColor="@color/black"
+        android:headerBackground="@color/dark_green"
+        app:theme="@style/Base.AlertDialog.AppCompat"
+        />
+
+       <Button
+           android:id="@+id/setBtn"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Set"
+           android:layout_marginTop="10dp"
+           android:layout_marginBottom="10dp"
+           android:textColor="@color/white"
+           android:layout_gravity="center_horizontal"
+           android:background="@drawable/button_rect_green"
+           />
+</LinearLayout>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="plspray.infoservices.lue.plspray.ProfileActivity"
+    tools:showIn="@layout/activity_profile">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+
+
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/userImageVIew"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dip"
+                    android:src="@drawable/user_default_image"
+                    app:civ_border_color="#EEEEEE"
+                    app:civ_border_width="1dp"
+                    app:civ_shadow="true"
+                    android:layout_gravity="center_horizontal"
+                    app:civ_shadow_radius="2"
+                    app:civ_shadow_color="#000000"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <TextView
+                android:id="@+id/editDetailsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/edit"
+                android:layout_gravity="end"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="20dp"
+
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/dark_green"
+                android:paddingBottom="10dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                >
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_name"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/firsttNameEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textSize="@dimen/input_text_size"
+                        android:maxLength="50"
+                        android:enabled="false"
+                        android:padding="10dp"
+                        android:textColorHint="@color/light_grey"
+                        android:background="@color/transparent_white"
+                        android:textColor="@color/white"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                </LinearLayout>
+
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/last_name"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+                    <EditText
+                        android:id="@+id/lastNameEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:textSize="@dimen/input_text_size"
+                        android:maxLength="50"
+                        android:enabled="false"
+                        android:padding="10dp"
+                        android:textColorHint="@color/light_grey"
+                        android:background="@color/transparent_white"
+                        android:textColor="@color/white"
+                        />
+
+                  </LinearLayout>
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                     android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+
+                    <EditText
+                        android:id="@+id/phoneNoEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent_white"
+                        android:enabled="false"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:padding="10dp"
+
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="@dimen/input_text_size" />
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/updateBtn"
+                android:layout_width="265dip"
+                android:layout_height="40dip"
+                android:layout_marginTop="5dip"
+                android:background="@drawable/button_rect"
+                android:layout_gravity="center_horizontal"
+                android:text="Update"
+                android:gravity="center"
+                android:textColor="@color/dark_green"
+                android:textStyle="bold"
+               />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

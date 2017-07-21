@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "234212922689",
+    "firebase_url": "https://plspray-230fd.firebaseio.com",
+    "project_id": "plspray-230fd",
+    "storage_bucket": "plspray-230fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234212922689:android:bd58f8e91bc19674",
+        "android_client_info": {
+          "package_name": "plspray.infoservices.lue.plspray"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234212922689-nbr1nibhfdsfmnjuoks2c9chsh7o4vcl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmEJoSVYaOTwz8y6L7mwq9ZbVeQtGD2nM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234212922689-nbr1nibhfdsfmnjuoks2c9chsh7o4vcl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
