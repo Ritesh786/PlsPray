@@ -33,6 +33,7 @@ public class UserSessionManager
 
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
+    public static final String KEY_name = "nameuser";
 
 
 
@@ -50,6 +51,19 @@ public class UserSessionManager
 
         // Storing name in pref
         editor.putString(KEY_NAME, name);
+
+        // Storing email in pref
+
+        // commit changes
+        editor.commit();
+    }
+
+    public void SaveName(String name){
+        // Storing login value as TRUE
+      //  editor.putBoolean(IS_USER_LOGIN, true);
+
+        // Storing name in pref
+        editor.putString(KEY_name, name);
 
         // Storing email in pref
 
@@ -99,6 +113,19 @@ public class UserSessionManager
 
         // return user
         return user;
+    }
+
+    public HashMap<String, String> getSaveUserDetail(){
+
+        //Use hashmap to store user credentials
+        HashMap<String, String> user1 = new HashMap<String, String>();
+
+        // user name
+        user1.put(KEY_name, pref.getString(KEY_name, null));
+
+
+        // return user
+        return user1;
     }
 
     /**

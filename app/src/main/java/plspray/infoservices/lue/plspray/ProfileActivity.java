@@ -43,12 +43,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     User user;
     CoordinatorLayout coordinatorLayout;
     Uri filePath;
+
+    UserSessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        session = new UserSessionManager(getApplicationContext());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         UtilityClass.setStatusBarColor(this);
@@ -194,10 +199,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         if (!jsonObject.getBoolean("error")) {
                             if (jsonObject.getBoolean("message")) {
                                 SharedPreferenceClass.setUserInfo(context,user);
+                                session.SaveName(user.getFirst_name());
                                 setProfileInfo();
                                 MainActivity.mainActivity.setUserInfo();
                                 Snackbar.make(coordinatorLayout,getString(R.string.updated_successfully),Snackbar.LENGTH_SHORT).show();
                                 startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                                finish();
                             }
                         }
                     } catch (Exception e) {

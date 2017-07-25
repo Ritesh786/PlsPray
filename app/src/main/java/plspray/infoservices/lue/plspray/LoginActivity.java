@@ -203,6 +203,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("OnPOst", " " + json);
             pDialog.dismiss();
             String fname = null;
+            String lname = null;
             try {
                 JSONObject jsonObject = new JSONObject(json);
                 if (!jsonObject.getBoolean("error")) {
@@ -211,11 +212,13 @@ public class LoginActivity extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject movie = jsonArray.getJSONObject(i);
                             fname  = movie.getString("first_name");
+                            lname  = movie.getString("last_name");
                         }
                         User user = new User(jsonArray.getJSONObject(0));
                         if (user != null) {
                             SharedPreferenceClass.setUserInfo(context, user);
-                            session.createUserLoginSession(fname);
+                            session.createUserLoginSession(lname);
+                            session.SaveName(fname);
                             startActivity(new Intent(context, MainActivity.class));
                             finish();
 

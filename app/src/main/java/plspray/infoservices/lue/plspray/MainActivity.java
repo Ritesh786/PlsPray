@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity
         if (session.checkLogin())
             finish();
 
-        HashMap<String, String> user = session.getUserDetails();
+        HashMap<String, String> user = session.getSaveUserDetail();
 
         // get name
-        name = user.get(UserSessionManager.KEY_NAME);
+        name = user.get(UserSessionManager.KEY_name);
 
         usernameText = (TextView) header.findViewById(R.id.usernameText);
         usernameText.setText(name);
@@ -183,6 +183,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.profile) {
             startActivity(new Intent(context, ProfileActivity.class));
+            finish();
         }
         else if (id == R.id.sendmsggroup) {
 
