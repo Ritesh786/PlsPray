@@ -55,6 +55,8 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     Button saveBtn;
     EditText groupNameEdit;
     Bitmap bitmap = null;
+    String phoneno = null;
+    String id12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,12 +185,6 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-        @Override
-        public void onClick (View v){
-
-          new SendUserGroupInfo().execute();
-
-        }
 
 
     private class SendUserGroupInfo extends AsyncTask<String, Void, String> {
@@ -242,7 +238,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
-            Log.d("OnPOst", " " + json);
+            Log.d("OnPOstgroup", " " + json);
             pDialog.dismiss();
 
 
@@ -256,11 +252,13 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
                         JSONObject jarray = messageObj.getJSONObject(i);
 
+                        phoneno = jarray.getString("createdby");
+                        id12  = jarray.getString("id");
                         Intent addnumbetintent = new Intent(CreateGroupActivity.this,AddNumber.class);
-                    addnumbetintent.putExtra("phoneno", jarray.getString("createdby"));
-                        addnumbetintent.putExtra("id", jarray.getString("id"));
-                    Log.d("no00","numb "+ jarray.getString("createdby").toString());
-                    startActivity(addnumbetintent);
+                        addnumbetintent.putExtra("phoneno", phoneno);
+                        addnumbetintent.putExtra("id", id12);
+                        startActivity(addnumbetintent);
+                        Log.d("phonecrete00","createphon0"+phoneno+id12);
 
                     }
 
@@ -297,5 +295,11 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         return return_text;
     }
 
+    @Override
+    public void onClick (View v){
+
+        new SendUserGroupInfo().execute();
+
+    }
 
     }

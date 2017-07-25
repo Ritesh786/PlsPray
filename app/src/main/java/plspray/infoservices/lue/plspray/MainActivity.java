@@ -6,11 +6,17 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,12 +28,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 
 import plspray.infoservices.lue.plspray.databind.ContactList;
@@ -51,7 +59,9 @@ public class MainActivity extends AppCompatActivity
     public static MainActivity mainActivity;
     String userid="";
     String groupId="";
+    UserSessionManager session;
    public static List<ContactList> contactListList;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +69,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        session = new UserSessionManager(getApplicationContext());
 
         context = this;
         mainActivity = this;
@@ -74,6 +86,24 @@ public class MainActivity extends AppCompatActivity
         header = navigationView.getHeaderView(0);
 
         initialize();
+
+//        Toast.makeText(getApplicationContext(),
+//                "User Login Status: " + session.isUserLoggedIn(),
+//                Toast.LENGTH_LONG).show();
+
+        if (session.checkLogin())
+            finish();
+
+        HashMap<String, String> user = session.getUserDetails();
+
+        // get name
+        name = user.get(UserSessionManager.KEY_NAME);
+
+        usernameText = (TextView) header.findViewById(R.id.usernameText);
+        usernameText.setText(name);
+
+        Log.d("username1211","ljo;non"+name);
+
     }
 
     @Override
@@ -88,7 +118,8 @@ public class MainActivity extends AppCompatActivity
 
 
     private void initialize() {
-        usernameText = (TextView) header.findViewById(R.id.usernameText);
+//        usernameText = (TextView) header.findViewById(R.id.usernameText);
+//        usernameText.setText(name);
         userImageVIew = (CircularImageView) header.findViewById(R.id.userImageVIew);
         phoneText = (TextView) header.findViewById(R.id.phoneText);
         setUserInfo();
@@ -108,10 +139,27 @@ public class MainActivity extends AppCompatActivity
 
     public void setUserInfo() {
         User user = SharedPreferenceClass.getUserInfo(this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String name = preferences.getString("imageurl", "");
         if (user != null) {
-            usernameText.setText(user.getFirst_name() + " " + user.getLast_name());
+          //  usernameText.setText(user.getFirst_name() + " " + user.getLast_name());
             if (!user.getPhone().trim().equals("")) phoneText.setText(user.getPhone());
-            UtilityClass.getImage(context, user.getPhoto(), userImageVIew, R.drawable.user_default_image);
+          //  UtilityClass.getImage(context, name, userImageVIew, R.drawable.praying_hands);
+            userImageVIew.setImageBitmap(StringToBitMap(name));
+
+            Log.d("userpic0","uer141"+name);
+        }
+    }
+
+    public Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0,
+                    encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
         }
     }
 
@@ -156,10 +204,14 @@ public class MainActivity extends AppCompatActivity
 
 
     private void logOut() {
-        SharedPreferenceClass.setLogin(context, false);
-        SharedPreferenceClass.clearUserInfo(context);
-        GlobalVariables.profilePic = null;
-        startActivity(new Intent(context, LoginActivity.class));
+//        SharedPreferenceClass.setLogin(context, false);
+//        SharedPreferenceClass.clearUserInfo(context);
+//        GlobalVariables.profilePic = null;
+//        startActivity(new Intent(context, LoginActivity.class));
+
+        session.logoutUser();
+        MainActivity.this.finish();
+
     }
 
     @Override

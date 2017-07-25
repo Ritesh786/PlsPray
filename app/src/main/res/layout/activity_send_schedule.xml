@@ -25,15 +25,38 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/dark_green"
-        android:tint="@color/white"
-        app:srcCompat="@android:drawable/ic_input_add" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="400dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--android:tint="@color/white" />-->
+
+        <!--<TextView android:layout_height="wrap_content"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:text="Create Schedule"-->
+            <!--android:elevation="6dp"-->
+            <!--android:textSize="18dp"-->
+            <!--android:background="@color/black"-->
+            <!--android:textColor="#fff"-->
+            <!--app:layout_anchor="@id/fab"-->
+            <!--app:layout_anchorGravity="center"/>-->
+
+    <Button
+        android:id="@+id/creteschedule_btn"
+        android:layout_width="150dp"
+        android:layout_height="40dip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="500dp"
+        android:background="@color/black"
+        android:text="Create Schedule"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_below="@+id/listView"
+        android:textColor="@color/white"
+        android:layout_marginLeft="200dp"
+        android:textStyle="bold" />
 
     <include layout="@layout/content_send_schedule" />
 

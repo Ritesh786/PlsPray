@@ -61,6 +61,7 @@ public class AddNumber extends AppCompatActivity {
 
         userphoneno = getIntent().getStringExtra("phoneno");
         id = getIntent().getStringExtra("id");
+        Log.d("phonr00", "00000"+userphoneno);
 
         creategroupbtn = (Button) findViewById(R.id.creategroup_btn);
 

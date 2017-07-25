@@ -2,6 +2,7 @@ package plspray.infoservices.lue.plspray;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ContentFrameLayout;
 import android.support.v7.widget.Toolbar;
 import android.telephony.gsm.GsmCellLocation;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     Context context;
     User user;
     CoordinatorLayout coordinatorLayout;
+    Uri filePath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,13 +124,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(user!=null)
         {
 //           if(GlobalVariables.profilePic!=null)
-//               userImageVIew.setImageBitmap(GlobalVariables.profilePic);
-            firsttNameEdit.setText(user.getFirst_name().trim());
-            lastNameEdit.setText(user.getLast_name().trim());
-            phoneNoEdit.setText(user.getPhone().trim());
-            firsttNameEdit.setEnabled(false);
-            lastNameEdit.setEnabled(false);
-            phoneNoEdit.setEnabled(false);
+         //      userImageVIew.setImageBitmap(GlobalVariables.profilePic);
+              firsttNameEdit.setText(user.getFirst_name().trim());
+              lastNameEdit.setText(user.getLast_name().trim());
+              phoneNoEdit.setText(user.getPhone().trim());
+              firsttNameEdit.setEnabled(false);
+              lastNameEdit.setEnabled(false);
+              phoneNoEdit.setEnabled(false);
         }
     }
 
@@ -186,6 +189,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void processFinish(String output) {
                     try {
+                        Log.d("updtae000","profilr00"+output);
                         JSONObject jsonObject = new JSONObject(output);
                         if (!jsonObject.getBoolean("error")) {
                             if (jsonObject.getBoolean("message")) {
@@ -193,6 +197,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                                 setProfileInfo();
                                 MainActivity.mainActivity.setUserInfo();
                                 Snackbar.make(coordinatorLayout,getString(R.string.updated_successfully),Snackbar.LENGTH_SHORT).show();
+                                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
                             }
                         }
                     } catch (Exception e) {
@@ -208,6 +213,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK && requestCode==PROFILEPIC_CHANGE)
         {
+            filePath  = data.getData();
             if(GlobalVariables.profilePic!=null)
             {
                 userImageVIew.setImageBitmap(GlobalVariables.profilePic);
@@ -215,4 +221,5 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }
         }
     }
+
 }

@@ -14,7 +14,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/plspray_logo"
+        android:icon="@mipmap/ic_prayhand"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/plspray_logo"
         android:supportsRtl="true"
@@ -90,7 +90,9 @@
 
         <activity android:name=".AdminMessage" />
         <activity android:name=".AddNumber" />
-        <activity android:name=".SendGroupActivity"></activity>
+        <activity android:name=".SendGroupActivity" />
+        <activity android:name=".utilities.SplashActivity" />
+        <activity android:name=".SetReminderForGRoup"></activity>
     </application>
 
 </manifest>

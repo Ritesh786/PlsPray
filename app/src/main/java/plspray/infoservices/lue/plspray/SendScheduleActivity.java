@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -44,6 +45,8 @@ public class SendScheduleActivity extends AppCompatActivity {
     String recieverId="";
     CoordinatorLayout coordinatorLayout;
 
+    Button mcreteschedulebtn,getMcreteschedulebtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +72,24 @@ public class SendScheduleActivity extends AppCompatActivity {
 
           }catch (Exception e){}
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.bringToFront();
-        fab.setOnClickListener(new View.OnClickListener() {
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.bringToFront();
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i=new Intent(context,AddTimeActivity.class);
+//                startActivityForResult(i,1);
+//            }
+//        });
+
+        mcreteschedulebtn = (Button) findViewById(R.id.creteschedule_btn);
+        mcreteschedulebtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+
                 Intent i=new Intent(context,AddTimeActivity.class);
-                startActivityForResult(i,1);
+                 startActivityForResult(i,1);
+
             }
         });
 

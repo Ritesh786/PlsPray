@@ -24,6 +24,7 @@ import plspray.infoservices.lue.plspray.AdminMessage;
 import plspray.infoservices.lue.plspray.MainActivity;
 import plspray.infoservices.lue.plspray.R;
 import plspray.infoservices.lue.plspray.SetReminderActivity;
+import plspray.infoservices.lue.plspray.SetReminderForGRoup;
 import plspray.infoservices.lue.plspray.utilities.AppConstants;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -68,6 +69,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
           }
 
+            if(msgtype.equals("groupuser")){
+
+                intent = new Intent(this, SetReminderForGRoup.class);
+                intent.putExtra("msg_id", jsonObject.getString("msg_id"));
+                JSONObject messageObj = new JSONObject(jsonObject.getString("message"));
+                intent.putExtra("message", messageObj.getString("message"));
+                soundNotification("Group Pray");
+
+            }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -85,7 +97,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_ONE_SHOT);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.plspray_logo)
+                .setSmallIcon(R.mipmap.ic_prayhand)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(msg)
                 .setAutoCancel(true)

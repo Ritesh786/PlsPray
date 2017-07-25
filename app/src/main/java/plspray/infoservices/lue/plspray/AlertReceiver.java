@@ -26,7 +26,7 @@ public class AlertReceiver extends BroadcastReceiver {
                 ,new Intent (context,MainActivity.class),0);
 
         NotificationCompat.Builder mbuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.plspray_logo)
+                .setSmallIcon(R.drawable.praying_hands)
                 .setContentTitle(msg)
                  .setTicker(alert)
                 .setContentText(msgtxt);

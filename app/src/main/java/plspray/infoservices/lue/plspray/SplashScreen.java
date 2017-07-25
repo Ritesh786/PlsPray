@@ -35,26 +35,25 @@ public class SplashScreen extends LoginActivity {
         context=this;
 
 
-        if(SharedPreferenceClass.getLogin(this))
-        {
-            User user= SharedPreferenceClass.getUserInfo(this);
-
-            if(user!=null) {
-                JSONObject jsonObject = new JSONObject();
-                try {
-                        jsonObject.accumulate("phone", user.getPhone());
-                    jsonObject.accumulate("device_id", UtilityClass.getMacId(context));
-                    jsonObject.accumulate("registration_key",SharedPreferenceClass.getToken(context));
-                    jsonObject.accumulate("first_name", musernmefirst.getText().toString());
-                    jsonObject.accumulate("last_name", musernamelast.getText().toString());
-
-                    signUp(jsonObject);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        else
+//        if(SharedPreferenceClass.getLogin(this))
+//        {
+//            User user= SharedPreferenceClass.getUserInfo(this);
+//
+//            if(user!=null) {
+//                JSONObject jsonObject = new JSONObject();
+//                try {
+//                        jsonObject.accumulate("phone", user.getPhone());
+//                    jsonObject.accumulate("device_id", UtilityClass.getMacId(context));
+//                    jsonObject.accumulate("registration_key",SharedPreferenceClass.getToken(context));
+//                    jsonObject.accumulate("first_name", user.getFirst_name());
+//                    jsonObject.accumulate("last_name", user.getLast_name());
+//                    signUp(jsonObject);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        else
             startTimer();
 
     }
@@ -91,7 +90,7 @@ public class SplashScreen extends LoginActivity {
                 if(count>2)
                 {
                     if(timer!=null) timer.cancel();
-                    startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     finish();
                 }
                 count++;

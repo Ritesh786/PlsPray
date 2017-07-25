@@ -3,9 +3,11 @@ package plspray.infoservices.lue.plspray.fragment;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -224,6 +226,7 @@ public class ContactListFragment extends Fragment {
 //                                MainActivity.contactListList.add(new ContactList(contactList.get(index).getName(), number, imageUrl, id));
 //                            }
                                     MainActivity.contactListList.add(new ContactList(firstname,number, imageUrl, id));
+
 
                              }
 

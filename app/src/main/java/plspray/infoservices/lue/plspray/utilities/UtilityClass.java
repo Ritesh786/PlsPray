@@ -130,7 +130,7 @@ public class UtilityClass {
 		ImageLoader imageLoader = MySingleton.getInstance(context)
 				.getImageLoader();
 		imageLoader.get(url, ImageLoader.getImageListener(networkImageView,
-				R.drawable.default_img, android.R.drawable
+				R.drawable.praying_hands, android.R.drawable
 						.ic_dialog_alert));
 		networkImageView.setImageUrl(url, imageLoader);
 	}
