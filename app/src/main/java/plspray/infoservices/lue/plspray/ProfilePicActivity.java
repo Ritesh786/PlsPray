@@ -69,8 +69,6 @@ public class ProfilePicActivity extends AppCompatActivity {
         updateBtn=(Button)findViewById(R.id.updateBtn);
         updateBtn.setVisibility(View.INVISIBLE);
 
-
-
         changePicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,6 +210,7 @@ public class ProfilePicActivity extends AppCompatActivity {
 
                         //Showing toast
                         Toast.makeText(context, volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
+
                     }
                 }){
             @Override

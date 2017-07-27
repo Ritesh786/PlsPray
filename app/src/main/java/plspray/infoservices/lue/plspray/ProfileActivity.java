@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -43,6 +44,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     User user;
     CoordinatorLayout coordinatorLayout;
     Uri filePath;
+ImageView mbackarrow;
+    TextView mtile;
 
     UserSessionManager session;
 
@@ -51,14 +54,24 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mbackarrow = (ImageView) toolbar.findViewById(R.id.backarrow);
+        mtile = (TextView) toolbar.findViewById(R.id.pageTitle);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         session = new UserSessionManager(getApplicationContext());
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         UtilityClass.setStatusBarColor(this);
         context=this;
         initialize();
+        mbackarrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                finish();
+            }
+        });
     }
 
 
