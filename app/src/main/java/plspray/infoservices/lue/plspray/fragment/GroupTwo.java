@@ -3,6 +3,7 @@ package plspray.infoservices.lue.plspray.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,6 +42,8 @@ import plspray.infoservices.lue.plspray.databind.Contact;
 import plspray.infoservices.lue.plspray.databind.ContactList;
 import plspray.infoservices.lue.plspray.databind.PhoneNumber;
 import plspray.infoservices.lue.plspray.utilities.SharedPreferenceClass;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -175,6 +178,7 @@ public class GroupTwo extends Fragment {
                         id = jsonArray.getJSONObject(iml).getString("group_id");
                         firstname = jsonArray.getJSONObject(iml).getString("group_name");
                         Log.d("AllAra00", "AllAra0012 " + number + imageUrl + id + firstname);
+
                         int index;
 //                                    if((index=clist.indexOf(number))!=-1)
 //                                }
@@ -191,6 +195,8 @@ public class GroupTwo extends Fragment {
 
 
                     }
+
+
 
                   //  MainActivity.contactListList.add(new ContactList(firstname, number, imageUrl, id));
 

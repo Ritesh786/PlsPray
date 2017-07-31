@@ -43,7 +43,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             String msgtype =jsonObject.getString("type");
 
-            if(msgtype.equals("user")) {
+            if(msgtype.equals("user_send")) {
                 intent = new Intent(this, SetReminderActivity.class);
                 intent.putExtra("msg_id", jsonObject.getString("msg_id"));
                 JSONObject messageObj = new JSONObject(jsonObject.getString("message"));
@@ -52,6 +52,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.putExtra("message_date", messageObj.getString("message_date"));
                 intent.putExtra("first_name", messageObj.getString("first_name"));
                 intent.putExtra("last_name", messageObj.getString("last_name"));
+                intent.putExtra("reciever_id", messageObj.getString("reciever_id"));
 
                 soundNotification("Pray Request");
 
@@ -64,21 +65,42 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
               JSONObject messageObj = new JSONObject(jsonObject.getString("message"));
               intent.putExtra("title", messageObj.getString("title"));
               intent.putExtra("description", messageObj.getString("description"));
-
               soundNotification("Admin Message");
 
           }
 
-            if(msgtype.equals("groupuser")){
+            if(msgtype.equals("guser_send")){
 
                 intent = new Intent(this, SetReminderForGRoup.class);
                 intent.putExtra("msg_id", jsonObject.getString("msg_id"));
                 JSONObject messageObj = new JSONObject(jsonObject.getString("message"));
+                intent.putExtra("sender_id", messageObj.getString("sender_id"));
+                intent.putExtra("chat_group_id", messageObj.getString("chat_group_id"));
+                intent.putExtra("group_mobile", messageObj.getString("group_mobile"));
+
                 intent.putExtra("message", messageObj.getString("message"));
                 soundNotification("Group Pray");
 
             }
 
+            if(msgtype.equals("user_accept")) {
+                intent = new Intent(this, MainActivity.class);
+                JSONObject messageObj = new JSONObject(jsonObject.getString("message"));
+                 String name =  messageObj.getString("message");
+                String first_name =  messageObj.getString("first_name");
+                Log.d("0000000","1111"+messageObj.toString());
+                soundNotification(first_name+" Pray Accepted ");
+            }
+
+
+            if(msgtype.equals("guser_accept")) {
+                intent = new Intent(this, MainActivity.class);
+                JSONObject messageObj = new JSONObject(jsonObject.getString("message"));
+               String name =  messageObj.getString("group_name");
+//                String first_name =  messageObj.getString("first_name");
+//                Log.d("0000000","1111"+messageObj.toString());
+                soundNotification(name+" Pray Accepted");
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

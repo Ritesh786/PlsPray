@@ -42,8 +42,8 @@ import plspray.infoservices.lue.plspray.utilities.UtilityClass;
 public class LoginActivity extends AppCompatActivity {
 
     TextInputLayout mobileNoLayout;
-    EditText mobilenodEdit, musernmefirst, musernamelast;
-    Button signupBtn;
+    EditText mobilenodEdit, mpassword, musernamelast;
+    Button loginbtn,msignupbtn;
     Context context;
     private static final int REQUEST_PERMISSION = 10;
 
@@ -52,21 +52,28 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.logintwo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         session = new UserSessionManager(getApplicationContext());
 
-        mobileNoLayout = (TextInputLayout) findViewById(R.id.mobileNoLayout);
-        mobilenodEdit = (EditText) findViewById(R.id.mobilenodEdit);
-        musernmefirst = (EditText) findViewById(R.id.usernamefirst_edttxt);
-        musernamelast = (EditText) findViewById(R.id.usernamelast_edttxt);
-        signupBtn = (Button) findViewById(R.id.signupBtn);
-        signupBtn.setOnClickListener(new View.OnClickListener() {
+      //  mobileNoLayout = (TextInputLayout) findViewById(R.id.login_mobile);
+        mobilenodEdit = (EditText) findViewById(R.id.login_mobile);
+        mpassword = (EditText) findViewById(R.id.login_password);
+        loginbtn = (Button) findViewById(R.id.btn_login);
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new SendUserInfo().execute();
+            }
+        });
+
+        msignupbtn = (Button) findViewById(R.id.signupBtntwo);
+        msignupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,SignupActivity.class));
             }
         });
 
@@ -149,8 +156,7 @@ public class LoginActivity extends AppCompatActivity {
         private ProgressDialog pDialog;
 
         String mno = mobilenodEdit.getText().toString().trim();
-        String fname = musernmefirst.getText().toString().trim();
-        String lname = musernamelast.getText().toString().trim();
+        String password = mpassword.getText().toString().trim();
 
 
         @Override
@@ -171,14 +177,13 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(Urls.signup);
+                HttpPost httpPost = new HttpPost("http://aceresults.info/api/login");
                 JSONObject jsonObject = new JSONObject();
 
                 jsonObject.accumulate("phone", mno);
-                jsonObject.accumulate("device_id", UtilityClass.getMacId(context));
+                jsonObject.accumulate("password", password);
                 jsonObject.accumulate("registration_key", SharedPreferenceClass.getToken(context));
-                jsonObject.accumulate("first_name", fname);
-                jsonObject.accumulate("last_name", lname);
+                    Log.d("jhvbvibib","ibib"+mno + password  + SharedPreferenceClass.getToken(context) );
 
                 StringEntity stringEntity = new StringEntity(jsonObject.toString());
                 httpPost.setEntity(stringEntity);

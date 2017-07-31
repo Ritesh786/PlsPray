@@ -209,6 +209,7 @@ public class MainActivity extends AppCompatActivity
 //        SharedPreferenceClass.clearUserInfo(context);
 //        GlobalVariables.profilePic = null;
 //        startActivity(new Intent(context, LoginActivity.class));
+
         session.logoutUser();
         MainActivity.this.finish();
 

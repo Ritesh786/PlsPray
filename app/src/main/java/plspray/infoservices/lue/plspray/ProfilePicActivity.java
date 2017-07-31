@@ -76,8 +76,6 @@ public class ProfilePicActivity extends AppCompatActivity {
             }
         });
 
-
-
       id= SharedPreferenceClass.getUserInfo(this).getId();
 
 //        if(GlobalVariables.profilePic!=null)
@@ -113,7 +111,6 @@ public class ProfilePicActivity extends AppCompatActivity {
             }
         });
 
-
         galleryBtnLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,8 +118,6 @@ public class ProfilePicActivity extends AppCompatActivity {
                 materialDialog.dismiss();
             }
         });
-
-
     }
 
     public void takeImageFromGallery() {
@@ -164,9 +159,6 @@ public class ProfilePicActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-
     }
 
     private void uploadPhoto(Bitmap bitmap)
@@ -234,10 +226,7 @@ public class ProfilePicActivity extends AppCompatActivity {
                 )
         );
 
-        //Creating a Request Queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //Adding request to the queue
         requestQueue.add(stringRequest);
     }
-
 }

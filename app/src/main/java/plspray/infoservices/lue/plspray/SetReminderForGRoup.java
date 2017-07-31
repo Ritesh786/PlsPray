@@ -2,8 +2,12 @@ package plspray.infoservices.lue.plspray;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +21,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 
 import plspray.infoservices.lue.plspray.utilities.SharedPreferenceClass;
@@ -27,11 +40,13 @@ import plspray.infoservices.lue.plspray.utilities.SharedPreferenceClass;
 public class SetReminderForGRoup extends AppCompatActivity implements View.OnClickListener{
 
     String msg_id="";
-    String sender_id="";
     String message="";
     String message_date="";
     String first_name="";
+    String sender_id="";
+    String chat_group_id="";
     String last_name="";
+    String group_mobile="";
     TextView mondayTimeText,tuesdayTimeText,wednesdayTimeText,thursdayTimeText,fridayTimeText,saturdayTimeText,sundayTimeText;
 
     LinearLayout messageLayout;
@@ -51,6 +66,9 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
 
         msg_id=getIntent().getStringExtra("msg_id");
         message=getIntent().getStringExtra("message");
+        sender_id=getIntent().getStringExtra("sender_id");
+        chat_group_id=getIntent().getStringExtra("chat_group_id");
+        group_mobile=getIntent().getStringExtra("group_mobile");
         Log.d("gro00000","libiug"+message);
 
         messageLayout=(LinearLayout)findViewById(R.id.messageLayout);
@@ -101,8 +119,10 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             case R.id.acceptBtn:
                 SharedPreferenceClass.setSchedule(this,messageObj.toString());
                 SetAlarmDate();
+                new SendGroupUlta().execute();
                 Log.d("schedule00","schedle11");
                 Snackbar.make(coordinatorLayout,"Reminder Set Successfully",Snackbar.LENGTH_SHORT);
+                SetReminderForGRoup.this.finish();
                 break;
             case R.id.rejectBtn:
                 finish();
@@ -158,7 +178,16 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             calendar1.set(java.util.Calendar.SECOND,
                     0);
 
-            alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+//            if(calendar1.before(Calendar.getInstance())) {
+//                calendar1.add(Calendar.DATE, 1);
+//            }
+
+            if (Build.VERSION.SDK_INT >= 19) {
+
+                alarmManager1.setExact(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }else{
+                alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }
 
             Toast.makeText(this, "Notification Will Come at Time specified",
                     Toast.LENGTH_SHORT).show();
@@ -191,7 +220,16 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             calendar1.set(java.util.Calendar.SECOND,
                     0);
 
-            alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            if(calendar1.before(Calendar.getInstance())) {
+                calendar1.add(Calendar.DATE, 1);
+            }
+
+            if (Build.VERSION.SDK_INT >= 19) {
+
+                alarmManager1.setExact(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }else{
+                alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }
 
             Toast.makeText(this, "Notification Will Come at Time specified",
                     Toast.LENGTH_SHORT).show();
@@ -224,7 +262,16 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             calendar1.set(java.util.Calendar.SECOND,
                     0);
 
-            alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            if(calendar1.before(Calendar.getInstance())) {
+                calendar1.add(Calendar.DATE, 1);
+            }
+
+            if (Build.VERSION.SDK_INT >= 19) {
+
+                alarmManager1.setExact(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }else{
+                alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }
 
             Toast.makeText(this, "Notification Will Come at Time specified",
                     Toast.LENGTH_SHORT).show();
@@ -258,7 +305,16 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             calendar1.set(java.util.Calendar.SECOND,
                     0);
 
-            alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            if(calendar1.before(Calendar.getInstance())) {
+                calendar1.add(Calendar.DATE, 1);
+            }
+
+            if (Build.VERSION.SDK_INT >= 19) {
+
+                alarmManager1.setExact(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }else{
+                alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }
 
             Toast.makeText(this, "Notification Will Come at Time specified",
                     Toast.LENGTH_SHORT).show();
@@ -292,7 +348,16 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             calendar1.set(java.util.Calendar.SECOND,
                     0);
 
-            alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            if(calendar1.before(Calendar.getInstance())) {
+                calendar1.add(Calendar.DATE, 1);
+            }
+
+            if (Build.VERSION.SDK_INT >= 19) {
+
+                alarmManager1.setExact(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }else{
+                alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }
 
             Toast.makeText(this, "Notification Will Come at Time specified",
                     Toast.LENGTH_SHORT).show();
@@ -326,7 +391,16 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             calendar1.set(java.util.Calendar.SECOND,
                     0);
 
-            alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            if(calendar1.before(Calendar.getInstance())) {
+                calendar1.add(Calendar.DATE, 1);
+            }
+
+            if (Build.VERSION.SDK_INT >= 19) {
+
+                alarmManager1.setExact(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }else{
+                alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }
 
             Toast.makeText(this, "Notification Will Come at Time specified",
                     Toast.LENGTH_SHORT).show();
@@ -359,10 +433,128 @@ public class SetReminderForGRoup extends AppCompatActivity implements View.OnCli
             calendar1.set(java.util.Calendar.SECOND,
                     0);
 
-            alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            if(calendar1.before(Calendar.getInstance())) {
+                calendar1.add(Calendar.DATE, 1);
+            }
+
+            if (Build.VERSION.SDK_INT >= 19) {
+
+                alarmManager1.setExact(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }else{
+                alarmManager1.set(AlarmManager.RTC, calendar1.getTimeInMillis(), pendingIntent1);
+            }
 
             Toast.makeText(this, "Notification Will Come at Time specified",
                     Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+    private class SendGroupUlta extends AsyncTask<String, Void, String> {
+
+        private ProgressDialog pDialog;
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(SetReminderForGRoup.this);
+            pDialog.setMessage("Inform Sender...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            String s = "";
+            //  Log.d("Addno", "addno11 " + text);
+
+            try {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost("http://aceresults.info/api/send_message_group");
+                JSONObject jsonObject = new JSONObject();
+
+                jsonObject.accumulate("sender_id", SharedPreferenceClass.getUserInfo(getApplicationContext()).getPhone());
+                jsonObject.accumulate("chat_group_id", chat_group_id);
+                jsonObject.accumulate("group_mobile", sender_id+","+group_mobile);
+                jsonObject.accumulate("pray_type", "pray_accept");
+                jsonObject.accumulate("message","  Pray Accepted");
+                Log.d("jhvbvibib1234","ibib222 "+SharedPreferenceClass.getUserInfo(getApplicationContext()).getPhone() + sender_id+","+group_mobile);
+
+                StringEntity stringEntity = new StringEntity(jsonObject.toString());
+                httpPost.setEntity(stringEntity);
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+                HttpEntity httpEntity = httpResponse.getEntity();
+                s = readResponse(httpResponse);
+                Log.d("tag11245rec", " " + s);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+            return s;
+
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+
+        }
+
+        @Override
+        protected void onPostExecute(String json) {
+            super.onPostExecute(json);
+            Log.d("OnPOstrece", " " + json);
+//            pDialog.dismiss();
+            String fname = null;
+            String lname = null;
+//            try {
+//                JSONObject jsonObject = new JSONObject(json);
+//                if (!jsonObject.getBoolean("error")) {
+//                    JSONArray jsonArray = jsonObject.getJSONArray("message");
+//                    if (jsonArray.length() > 0) {
+//                        for (int i = 0; i < jsonArray.length(); i++) {
+//                            JSONObject movie = jsonArray.getJSONObject(i);
+//                            fname  = movie.getString("first_name");
+//                            lname  = movie.getString("last_name");
+//                        }
+//                        User user = new User(jsonArray.getJSONObject(0));
+//                        if (user != null) {
+//                            SharedPreferenceClass.setUserInfo(context, user);
+//                            session.createUserLoginSession(lname);
+//                            session.SaveName(fname);
+//                            startActivity(new Intent(context, MainActivity.class));
+//                            finish();
+//
+//                        }
+//
+//                    }
+//                }
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+        }
+
+
+        private String readResponse(HttpResponse httpResponse) {
+
+            InputStream is = null;
+            String return_text = "";
+            try {
+                is = httpResponse.getEntity().getContent();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+                String line = "";
+                StringBuffer sb = new StringBuffer();
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+                return_text = sb.toString();
+                Log.d("return_text", "" + return_text);
+            } catch (Exception e) {
+
+            }
+            return return_text;
         }
 
     }

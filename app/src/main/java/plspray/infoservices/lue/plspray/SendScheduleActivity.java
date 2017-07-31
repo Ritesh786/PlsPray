@@ -141,6 +141,7 @@ public class SendScheduleActivity extends AppCompatActivity {
             jsonObject.accumulate("sender_id", SharedPreferenceClass.getUserInfo(context).getId());
             jsonObject.accumulate("reciever_id", recieverId);
             jsonObject.accumulate("group_id", "");
+            jsonObject.accumulate("pray_type", "pray_send");
             final JSONObject messageObj = new JSONObject();
             for (DayTime dayTime : schedule.getDayTimeList()) {
                 messageObj.accumulate(dayTime.getDay(), dayTime.getTime());
